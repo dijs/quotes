@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 var request = require('request');
 var express = require('express');
 var _ = require('underscore');
@@ -19,6 +21,10 @@ var historyIndex = 0;
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.set('view cache', false);
+
+app.get('/', function (req, res) {
+  res.redirect('/quote');
+});
 
 app.get('/quote', function (req, res, next) {
   generate(function (err, id) {
